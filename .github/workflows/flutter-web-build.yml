@@ -23,17 +23,26 @@ jobs:
       with:
         flutter-version: '3.24.5'
 
+    # 3. Bersihkan cache Flutter (opsional)
     - name: Clean Flutter Cache
       run: flutter clean
-    # 3. Validasi Flutter dan Instal Dependency
+
+    # 4. Validasi Flutter dan Instal Dependency
     - name: Flutter dependencies
       run: flutter pub get
 
-    # 4. Build Aplikasi Web
+    # 5. Build Aplikasi Web
     - name: Build Flutter Web
       run: flutter build web --release
       
-    # 5. Upload Build Output ke Artifacts
+    # 6. Deploy ke GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: gh-pages
+        folder: build/web
+
+    # 7. Upload Build Output ke Artifacts (opsional)
     - name: Upload Web Build
       uses: actions/upload-artifact@v3
       with:
