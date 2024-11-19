@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/">
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Web Order NFT">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="POSFIN">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <title>PT. POS FINANSIAL INDONESIA</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f4f4f4;
+    }
+
+    #loading_indicator {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+    }
+
+    /* Logo POSFIN (tetap diam di tengah) */
+    .logo {
+      width: 90px; /* Adjust according to your logo size */
+      height: 40px;
+      z-index: 2;
+    }
+
+    /* Loading spinner di sekitar logo */
+    .spinner {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 4px solid rgba(0, 0, 0, 0.1); /* Lingkaran abu-abu tipis */
+      border-top: 4px solid #4CAF50; /* Warna hijau untuk bagian yang berputar */
+      border-radius: 50%;
+      animation: spin 1.5s linear infinite;
+      z-index: 1;
+    }
+
+    /* Animasi spin (putaran) */
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="loading_indicator">
+  <img class="logo" src="./assets/logo-posfin.png" alt="POSFIN Logo" />
+  <div class="spinner"></div>
+</div>
+
+  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      // Hide loading indicator when Flutter has rendered the first frame
+      document.getElementById('loading_indicator').style.display = 'none';
+    });
+  </script>
+
+
+
+</body>
+</html>
