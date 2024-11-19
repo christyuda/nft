@@ -1,0 +1,39 @@
+name: Build Flutter Web
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout kode dari repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Instal Flutter
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+
+    # 3. Validasi Flutter dan Instal Dependency
+    - name: Flutter dependencies
+      run: flutter pub get
+
+    # 4. Build Aplikasi Web
+    - name: Build Flutter Web
+      run: flutter build web --release
+
+    # 5. Upload Build Output ke Artifacts
+    - name: Upload Web Build
+      uses: actions/upload-artifact@v3
+      with:
+        name: flutter-web-build
+        path: build/web
